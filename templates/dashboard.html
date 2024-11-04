@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Dashboard - Upload and Preview Videos</h1>
+
+        <!-- Video Upload Form -->
+        <form action="/dashboard" method="post" enctype="multipart/form-data" class="mb-4">
+            <div class="form-group">
+                <label for="file">Upload Video</label>
+                <input type="file" name="file" id="file" class="form-control-file" accept="video/*">
+            </div>
+            <button type="submit" class="btn btn-primary">Upload Video</button>
+        </form>
+
+        <!-- Display Uploaded Videos -->
+        <h2>Uploaded Videos</h2>
+        <div class="row">
+            {% for video in videos %}
+                <div class="col-md-4 mb-3">
+                    <video width="100%" controls>
+                        <source src="{{ url_for('static', filename='uploads/' + video) }}" type="video/mp4">
+                    </video>
+                    <a href="{{ url_for('video_preview', filename=video) }}" class="btn btn-info mt-2">Preview</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

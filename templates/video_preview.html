@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Preview</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Video Preview</h1>
+        <div class="col-md-4 mb-3">
+        <video width="100%" controls>
+            <source src="{{ url_for('static', filename='uploads/' + filename) }}" type="video/mp4">
+        </video>
+    </div>
+        <a href="{{ url_for('create_clips_route', filename=filename) }}" class="btn btn-primary">Create Clips</a>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+    </div>
+</body>
+</html>

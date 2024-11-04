@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Clips</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        video {
+            border-radius: 8px;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h4 class="mt-4">Create Clips for "{{ filename }}"</h4>
+
+        <!-- Video Preview -->
+        <div class="col-md-4 mb-3">
+            <video id="originalvid" controls autoplay muted>
+                <source src="{{ url_for('static', filename='uploads/' + filename) }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+        <!-- Input Form for Title -->
+         
+        <form action="{{ url_for('create_clips_route', filename=filename) }}" method="POST">
+            <div class="form-group">
+                <label for="title">Title for Clips:</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter a title" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Clips</button>
+        </form>
+        
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+    </div>
+</body>
+</html>
